@@ -28,14 +28,34 @@ if ($action == 'list_products') {
     $version = filter_input(INPUT_POST, 'version', FILTER_VALIDATE_FLOAT);
     $release_date = filter_input(INPUT_POST, 'release_date');
 
+
+    /* Trendon Ellis - the following is my solution to 2-2 */
+    $isValid = true;                                                        /* '$isValid' used as a flag for various validity tests */
+
+    if ($code === NULL ||                                                   /* original validation logic that simply controls the value of the flag */
+        $name === FALSE ||
+        $version === NULL ||
+        $version === FALSE ||
+        $release_date === NULL)
+    {
+        $isValid = false;                                                   /* set to false if any of the original validations were failed */
+    }
+
+    try                                                                     /* Try catch used to test date format. */
+    {
+        $suppliedDate = new DateTime($release_date);                        /* attempt to create new DateTime object with supplied release date*/
+    } catch (Exception $e)
+    {
+        $isValid = false;                                                   /* failure to create new DateTime object sets flag to false*/
+    }
+
+
     // Validate the inputs
-    if ( $code === NULL || $name === FALSE || 
-            $version === NULL || $version === FALSE || 
-            $release_date === NULL) {
+    if ( $isValid === false) {                                              /* new final if logic that shows the error if any validations above fail */
         $error = "Invalid product data. Check all fields and try again.";
         include('../errors/error.php');
     } else {
-        add_product($code, $name, $version, $release_date);
+        add_product($code, $name, $version, $release_date);                 /* if everything checks out, the record is updated. */
         header("Location: .");
     }
 }

@@ -16,7 +16,11 @@
             <td><?php echo htmlspecialchars($product['productCode']); ?></td>
             <td><?php echo htmlspecialchars($product['name']); ?></td>
             <td><?php echo htmlspecialchars($product['version']); ?></td>
-            <td><?php echo htmlspecialchars($product['releaseDate']); ?></td>
+            <td><?php
+                    $shortDate = new DateTime($product['releaseDate']);         /*DataTime object created to manage date*/
+                    echo $shortDate->format('m-d-Y');                    /*Date displayed in desired format*/
+                ?>
+            </td>
             <td><form action="." method="post">
                 <input type="hidden" name="action"
                        value="delete_product">
