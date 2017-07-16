@@ -29,6 +29,7 @@
             <label>&nbsp;</label>
             <input type="submit" value="Register Product" />
         </form>
+        <em>You are logged in as <?php echo $_SESSION['email']; ?>.</em>            <!--included to let the user know they are logged in-->
     <?php endif; ?>
 
 </main>
