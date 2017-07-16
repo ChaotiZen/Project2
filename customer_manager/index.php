@@ -1,6 +1,8 @@
 <?php
 require('../model/database.php');
 require('../model/customer_db.php');
+require ('../model/countries_db.php');
+
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -27,6 +29,7 @@ if ($action == 'search_customers') {
 } else if ($action == 'display_customer') {
     $customer_id = filter_input(INPUT_POST, 'customer_id', FILTER_VALIDATE_INT);
     $customer = get_customer($customer_id);
+    $countries = get_countries();                                                                               /*This was added to call get_countries() and load it into the $countries array */
     include('customer_display.php');
 } else if ($action == 'update_customer') {
     $customer_id = filter_input(INPUT_POST, 'customer_id', FILTER_VALIDATE_INT);

@@ -33,9 +33,24 @@
         <input type="text" name="postal_code" 
                value="<?php echo htmlspecialchars($customer['postalCode']); ?>"><br>
 
-        <label>Country Code:</label>
-        <input type="text" name="country_code" 
-               value="<?php echo htmlspecialchars($customer['countryCode']); ?>"><br>
+        <!--Trendon Ellis - This will show the country name (not country code),
+        but will post the value country_code as before. It is now a drop down containing
+        all countries form the DB.   Notes to the right of solution-->
+
+        <label>Country:</label>
+        <select name="country_code">
+            <?php foreach ($countries as $country): ?>                                  <!--starts a loop to run the $countries array as $country-->
+                <?php if($customer['countryCode'] == $country['countryCode']): ?>       <!--if logic that tests the country code assigned to the customer array against the iteration of the foreach loop-->
+                    <option value="<?php echo $country['countryCode']; ?>" selected>    <!--if they match that 'option' tag has the 'selected' attribute added to it-->
+                        <?php echo $country['countryName']; ?>                          <!--the actual country name is used in the 'option' element-->
+                    </option>
+                <?php else: ?>                                                          <!--if the values do not match-->
+                    <option value="<?php echo $country['countryCode']; ?>" >            <!--the iteration is handled exactly the same except for the exclusion of the 'selected' attribute-->
+                        <?php echo $country['countryName']; ?>
+                    </option>
+                <?php endif; ?>                                                         <!--end if logic-->
+            <?php endforeach; ?>                                                        <!--end foreach loop-->
+        </select> <br>                                                                  <!--end select-->
 
         <label>Phone:</label>
         <input type="text" name="phone" 

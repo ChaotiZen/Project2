@@ -1,3 +1,5 @@
+<!-- Trendon Ellis only minor changes to make the paths apply to all pages-->
+
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +7,7 @@
 <head>
     <title>SportsPro Technical Support</title>
     <link rel="stylesheet" type="text/css"
-          href="/project_solutions/ch06_tech_support/main.css">
+          href="/classwork/tech_support_Project2/main.css">
 </head>
 
 <!-- the body section -->
@@ -15,7 +17,7 @@
     <p>Sports management software for the sports enthusiast</p>
     <nav>
         <ul>
-            <li><a href="/tech_support_Project2/">Home</a></li>
+            <li><a href="/classwork/tech_support_Project2/">Home</a></li>
         </ul>
     </nav>
 </header>
